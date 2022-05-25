@@ -1,0 +1,60 @@
+:root{
+    --purple: hsl(259deg 86% 59%);
+}
+.text-main{
+    color: var(--purple);
+}
+body{
+    background-color: #f8f9fa;
+}
+a{
+    text-decoration: none;
+}
+.bg-white{
+    background-color: white;
+}
+
+.object-fill{
+    object-fit: fill;
+}
+
+.ml-2{
+    margin-left: 0.5rem!important;;
+}
+.pr-2{
+    padding-right: 0.5rem !important;
+}
+.rounded-5{
+    border-radius: 25px;
+}
+
+.box-shadow{
+    box-shadow: 0 5px 5px rgb(0 0 0 / 50%);
+}
+
+.zoom:hover{
+    transform: scale(1.1);
+    backface-visibility: hidden;
+    transition: 0.5s;
+}
+
+.text-between-line {
+    width: 100%; 
+    text-align: center; 
+    border-bottom: 1px solid #000; 
+    line-height: 0.1em;
+    margin: 10px 0 20px; 
+} 
+ 
+.text-between-line span { 
+     background:#f8f9fa;
+     padding:0 10px; 
+}
+
+.btn-save{
+    background-color: hsl(259deg 86% 59%);
+}
+
+.form-control, .form-select{
+    border-radius: 10px;
+}

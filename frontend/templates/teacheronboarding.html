@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Signup - Parent</title>
+{% endblock title %}
+
+{% block content %}
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-content-center p-5">
+            <div class="col-lg-6 px-5 pt-1 pb-4 border border-2 rounded-5">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <i class="fal fa-user-circle fa-7x my-3 text-center w-100"></i>
+                    <h5 class="p-1 text-center">Sign In</h5>
+                    <a href="" class="d-flex justify-content-center text-dark">
+                        <div class="d-flex flex-row p-2 align-items-center my-2 border rounded w-50  zoom">
+                            <img src="{% static 'images/apple.svg' %}" class="object-fill w-25" height="30" width="40">
+                            <p class="w-75 mb-0">Sign in with Apple</p>
+                        </div>
+                    </a>
+                    <a href="" class="d-flex justify-content-center text-dark">
+                        <div class="d-flex flex-row p-2 align-items-center my-2 border rounded w-50  zoom">
+                            <img src="{% static 'images/google.svg' %}" class="object-fill w-25" height="30" width="50">
+                            <p class="w-75 mb-0">Sign in with Google</p>
+                        </div>
+                    </a>
+                    <p class="text-between-line mt-4"><span>OR</span></p>
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="username"  placeholder="Enter full name" required>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Email address</label>
+                      <input type="email" class="form-control" id="email" name="email"  placeholder="Email" required>
+                      <div class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <p class="text-between-line mt-4"><span>Your kid's information</span></p>
+                    <div class="mb-3">
+                        <label class="form-label">Birthdate</label>
+                        <input type="date" class="form-control" id="birthdate" name="birthdate"  placeholder="Enter birthdate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username"  placeholder="Enter unique username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Grade</label>
+                        <input type="text" class="form-control" id="grade" name="grade" required>
+                    </div>
+                    <button class="btn btn-outline-dark my-2" type="button" onclick="addKid()">Add Kid</button>
+                    <table class="table table-bordered" id="kids-table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Birthdate</th>
+                            <th scope="col">Grade</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <button type="submit" class="btn btn-save text-light px-5 fw-bold fs-5 py-2 my-2">Sign Up</button>
+                    <div class="form-text py-2">By clicking Sign Up you're agreeing to, Primer's 
+                        <span class="text-main fw-bold">Terms Of Service</span>, including our 
+                        <span class="text-main fw-bold">Code Of Conduct</span>, and our 
+                        <span class="text-main fw-bold">Privacy Policy</span> 
+                    </div>
+                    <a href="" class="text-dark">Already have a account? <span class="text-main fw-bold">Sign In</span></a>
+                  </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var kids_count = 0;
+        function addKid(){
+            var username = $("#username").val();
+            var birthdate = $("#birthdate").val();
+            var grade = $("#grade").val();
+
+
+            if (username && birthdate && grade){
+                if (kids_count < 4){
+                    var find_row = $(`#${username}`).length;
+                    if (find_row <= 0){
+                        kids_count ++;
+                        var tr = `
+                        <tr id="${username}">
+                            <th scope="row">${kids_count}</th>
+                            <td>${username}</td>
+                            <td>${birthdate}</td>
+                            <td>${grade}</td>
+                        </tr>`;
+                        $('#kids-table tbody').append(tr);
+                    }
+                    else{
+                        new AWN().alert('Kid has already been added with that username!');
+                    }
+                }
+                else{
+                    new AWN().warning('You can only add upto 4 kids!');
+                }
+            }
+            else{
+                new AWN().alert('Required fields for kids missing!');
+            }
+        }
+    </script>
+{% endblock content %}s
